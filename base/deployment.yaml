@@ -18,12 +18,18 @@ spec:
         name: pokedex-ui-2
         ports:
         - containerPort: 80
-        # env:
-        #   - name: API_URL
-        #     valueFrom:
-        #       configMapKeyRef:
-        #         name: guestbook-cm
-        #         key: API_URL
+        env:
+          - name: API_URL
+            valueFrom:
+              configMapKeyRef:
+                name: POKEDEX_NAME
+                key: POKEDEX_NAME
+              configMapKeyRef_2:
+                name: POKEDEX_START_NUMBER
+                key: POKEDEX_START_NUMBER
+              configMapKeyRef_3:
+                name: POKEDEX_END_NUMBER
+                key: POKEDEX_END_NUMBER
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,9 +51,15 @@ spec:
         name: pokedex-ui
         ports:
         - containerPort: 80
-        # env:
-        #   - name: API_URL
-        #     valueFrom:
-        #       configMapKeyRef:
-        #         name: guestbook-cm
-        #         key: API_URL
+        env:
+          - name: API_URL
+            valueFrom:
+              configMapKeyRef:
+                name: POKEDEX_NAME
+                key: POKEDEX_NAME
+              configMapKeyRef_2:
+                name: POKEDEX_START_NUMBER
+                key: POKEDEX_START_NUMBER
+              configMapKeyRef_3:
+                name: POKEDEX_END_NUMBER
+                key: POKEDEX_END_NUMBER
