@@ -1,39 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pokedex-ui-2
-spec:
-  replicas: 2
-  revisionHistoryLimit: 3
-  selector:
-    matchLabels:
-      app: pokedex-ui-2
-  template:
-    metadata:
-      labels:
-        app: pokedex-ui-2
-    spec:
-      containers:
-      - image: pokeapi:0.1
-        name: pokedex-ui-2
-        ports:
-        - containerPort: 80
-        env:
-          - name: API_URL
-            valueFrom:
-              configMapKeyRef:
-                name: POKEDEX_NAME
-                key: POKEDEX_NAME
-              configMapKeyRef_2:
-                name: POKEDEX_START_NUMBER
-                key: POKEDEX_START_NUMBER
-              configMapKeyRef_3:
-                name: POKEDEX_END_NUMBER
-                key: POKEDEX_END_NUMBER
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: pokedex-ui
 spec:
   replicas: 2
@@ -55,11 +22,53 @@ spec:
           - name: API_URL
             valueFrom:
               configMapKeyRef:
-                name: POKEDEX_NAME
-                key: POKEDEX_NAME
-              configMapKeyRef_2:
-                name: POKEDEX_START_NUMBER
+                name: pokedex-cm  # Name of the ConfigMap
+                key: API_URL
+          - name: POKEDEX_START_NUMBER
+            valueFrom:
+              configMapKeyRef:
+                name: pokedex-cm
                 key: POKEDEX_START_NUMBER
-              configMapKeyRef_3:
-                name: POKEDEX_END_NUMBER
+          - name: POKEDEX_END_NUMBER
+            valueFrom:
+              configMapKeyRef:
+                name: pokedex-cm
+                key: POKEDEX_END_NUMBER
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokedex-ui-2
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: pokedex-ui-2
+  template:
+    metadata:
+      labels:
+        app: pokedex-ui-2
+    spec:
+      containers:
+      - image: pokeapi:0.1
+        name: pokedex-ui-2
+        ports:
+        - containerPort: 80
+        env:
+          - name: API_URL
+            valueFrom:
+              configMapKeyRef:
+                name: pokedex-cm
+                key: API_URL
+          - name: POKEDEX_START_NUMBER
+            valueFrom:
+              configMapKeyRef:
+                name: pokedex-cm
+                key: POKEDEX_START_NUMBER
+          - name: POKEDEX_END_NUMBER
+            valueFrom:
+              configMapKeyRef:
+                name: pokedex-cm
                 key: POKEDEX_END_NUMBER
