@@ -4,5 +4,5 @@ metadata:
   name: pokedex-cm
 data:
   POKEDEX_NAME: "Chlamydia"
-  POKEDEX_START_NUMBER: 0
-  POKEDEX_END_NUMBER: 10
+  POKEDEX_START_NUMBER: "0"
+  POKEDEX_END_NUMBER: "10"
