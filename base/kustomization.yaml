@@ -7,3 +7,4 @@ resources:
 #- pokedex-ui/
 - deployment.yaml
 - pokedex-ui-svc.yaml
+- configmap.yaml
