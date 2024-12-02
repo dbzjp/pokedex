@@ -4,7 +4,18 @@ metadata:
   name: pokedex-ui	
 spec:	
   ports:	
-  - port: 80	
-    targetPort: 80	
+  - port: 3000	
+    targetPort: 3000	
   selector:	
     app: pokedex-ui
+---
+apiVersion: v1	
+kind: Service	
+metadata:	
+  name: pokedex-ui-2
+spec:	
+  ports:	
+  - port: 3000	
+    targetPort: 3000	
+  selector:	
+    app: pokedex-ui-2
