@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokedex-ui
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: pokedex-ui
+  template:
+    metadata:
+      labels:
+        app: pokedex-ui
+    spec:
+      containers:
+      - image: pokeapi:0.1
+        name: pokedex-ui
+        ports:
+        - containerPort: 80
