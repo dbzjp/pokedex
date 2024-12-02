@@ -19,11 +19,11 @@ spec:
         ports:
         - containerPort: 80
         env:
-          - name: API_URL
+          - name: POKEDEX_NAME
             valueFrom:
               configMapKeyRef:
-                name: pokedex-cm  # Name of the ConfigMap
-                key: API_URL
+                name: pokedex-cm  
+                key: POKEDEX_NAME
           - name: POKEDEX_START_NUMBER
             valueFrom:
               configMapKeyRef:
