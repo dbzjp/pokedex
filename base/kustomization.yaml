@@ -6,3 +6,4 @@ namespace: pokedex-kustomize
 resources:
 #- pokedex-ui/
 - deployment.yaml
+- pokedex-ui-svc.yaml
