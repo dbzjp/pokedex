@@ -31,3 +31,10 @@ spec:
           httpGet:
             path: /health
             port: http
+        resources:
+          requests:
+            cpu: "200m"    # Minimum 200 millicores (0.2 CPU) reserved
+            memory: "256Mi" # Minimum 256MiB memory reserved
+          limits:
+            cpu: "500m"    # Maximum 500 millicores (0.5 CPU)
+            memory: "512Mi" # Maximum 512MiB memory
